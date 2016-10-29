@@ -1,0 +1,9 @@
+{
+    "presets": [ "es2015", "react" ],
+    "plugins": [
+        "react-hot-loader/babel",
+        "syntax-decorators",
+        "transform-decorators-legacy",
+        "transform-class-properties"
+    ]
+}
