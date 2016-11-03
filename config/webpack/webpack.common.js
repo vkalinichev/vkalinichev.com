@@ -31,7 +31,8 @@ module.exports = {
             {
                 test: /\.svg$/,
                 exclude: /node_modules/,
-                loader: 'url?limit=10000&mimetype=image/svg+xml'
+                // loader: 'url?limit=10000&mimetype=image/svg+xml'
+                loader: 'babel!react-svg'
             },
             {
                 test: /\.gif/,
