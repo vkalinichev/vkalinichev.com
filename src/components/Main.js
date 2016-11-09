@@ -1,6 +1,7 @@
 import BusinessCard from './BusinessCard'
 import Section from './Section'
 import Portfolio from './Portfolio'
+import Skills from './Skills'
 import CSSModules from 'react-css-modules'
 
 import * as styles from './Main.styl'
@@ -17,6 +18,9 @@ const Main = () =>
             <div>info</div>
         </Section>
         <Section light>
+            <Skills/>
+        </Section>
+        <Section dark>
             <Portfolio/>
         </Section>
     </div>
