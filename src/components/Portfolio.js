@@ -6,9 +6,11 @@ import projects from '../data/projects.json'
 const Portfolio = () => {
 
     return (
-        <ul>
+        <ul styleName='list'>
             { projects.map( project =>
-                <li>{ project.name }</li>
+                <li styleName='item' key={ project.name }>
+                    { project.name }
+                </li>
             ) }
         </ul>
     )
