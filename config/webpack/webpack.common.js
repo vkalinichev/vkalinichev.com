@@ -14,6 +14,11 @@ module.exports = {
                 loader: 'babel'
             },
             {
+                test: /\.json$/,
+                exclude: /node_modules/,
+                loader: 'json'
+            },
+            {
                 test: /\.eot$/,
                 exclude: /node_modules/,
                 loader: 'file'

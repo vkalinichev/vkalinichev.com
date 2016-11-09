@@ -1,5 +1,6 @@
 import BusinessCard from './BusinessCard'
 import Section from './Section'
+import Portfolio from './Portfolio'
 import CSSModules from 'react-css-modules'
 
 import * as styles from './Main.styl'
@@ -16,7 +17,7 @@ const Main = () =>
             <div>info</div>
         </Section>
         <Section light>
-            <div>portfolio</div>
+            <Portfolio/>
         </Section>
     </div>
 
