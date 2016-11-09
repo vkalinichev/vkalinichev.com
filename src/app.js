@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { Router, Route, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import './actions/actions'
-import './style.css'
+import './style.styl'
 import Root from './containers/Root'
 import DevTools from './containers/DevTools'
 import configureStore from './store/configureStore'
@@ -23,7 +23,7 @@ window.store = store
 
 render(
     <Provider store={ store } >
-        <div>
+        <div className='wrapper'>
             <Router history={ history } >
                 <Route path='/' component={ Root } />
             </Router>

@@ -6,7 +6,7 @@ import SocialIcons from './SocialIcons/SocialButtons'
 const BusinessCard = () =>
 
     <div styleName='card' >
-        <div styleName='photo' src={ photo } />
+        <img styleName='photo' src={ photo } />
         <div styleName='info'>
             <h3 styleName='title'>Vladimir Kalinichev</h3>
             <div styleName='post'>JavaScript-developer</div>
