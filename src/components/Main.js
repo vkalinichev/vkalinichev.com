@@ -12,17 +12,17 @@ const Main = () =>
         <Section light>
             <BusinessCard/>
         </Section>
-        <Section dark>
-            <div>some</div>
-            <div>bio</div>
-            <div>info</div>
-        </Section>
-        <Section light>
-            <Skills/>
-        </Section>
-        <Section dark>
-            <Portfolio/>
-        </Section>
+        {/*<Section dark>*/}
+            {/*<div>some</div>*/}
+            {/*<div>bio</div>*/}
+            {/*<div>info</div>*/}
+        {/*</Section>*/}
+        {/*<Section light>*/}
+            {/*<Skills/>*/}
+        {/*</Section>*/}
+        {/*<Section dark>*/}
+            {/*<Portfolio/>*/}
+        {/*</Section>*/}
     </div>
 
 
