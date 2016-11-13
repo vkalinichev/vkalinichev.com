@@ -2,7 +2,7 @@
   "name": "vkalinichev.com",
   "version": "1.0.0",
   "description": "vkalinichev homepage",
-  "main": "server.js",
+  "main": "",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack-dev-server --progress --profile --colors",
@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "postinstall": "npm run build",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test --watch"
   },
   "keywords": [
     "homepage",
