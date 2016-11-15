@@ -27,7 +27,10 @@ render(
             <Router history={ history } >
                 <Route path='/' component={ Root } />
             </Router>
-            <DevTools />
+            { process.env.NODE_ENV === 'production' ?
+                null :
+                <DevTools />
+            }
         </div>
     </Provider>,
     document.getElementById( 'root' )
