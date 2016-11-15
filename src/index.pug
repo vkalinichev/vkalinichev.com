@@ -9,11 +9,12 @@ head
 
 body
   .wrapper
+    .wrapper__space.wrapper__space_top
     .section
       .section__inner
         .business-card
           .business-card__photo
-            img( src='./Vladimir.Kalinichev.1.png' )
+            img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.1.png' )
           .business-card__info
             .business-card__name
               | Vladimir Kalinichev
@@ -29,5 +30,7 @@ body
                 include ./icons/stackoverflow.svg
               a.social__icon.social__icon_npm( href='https://npmjs.org/~vkalinichev' )
                 include ./icons/npm.svg
+
+    .wrapper__space.wrapper__space_bottom
 
   script( src='index.js' )
