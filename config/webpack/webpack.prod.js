@@ -10,7 +10,7 @@ const { APP: { APP_NAME }, PATHS: { BUILD, SRC } } = require( '..' )
 module.exports = {
 
     entry: [
-        './src/app.js'
+        './src/index.js'
     ],
 
     output: {

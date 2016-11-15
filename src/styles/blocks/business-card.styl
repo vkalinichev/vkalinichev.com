@@ -1,0 +1,48 @@
+.business-card
+    max-width 440px
+    margin auto
+
+    display flex
+    align-items center
+    user-select none
+
+    &__photo
+        width 128px
+        height @width
+        border-radius 50%
+        overflow hidden
+        margin 0 40px 0 0
+        background transparent center / cover
+        animation pixIn .3s linear forwards
+
+        &:hover
+            animation pixOut .2s linear forwards
+
+    &__info
+        padding-bottom 10px
+        color #888
+        font-size 1.6em
+        font-weight 300
+        user-select initial
+
+    &__name
+        margin-bottom .1em
+
+        font-size 2.2rem
+        font-weight 400
+        color #333
+
+    &__post
+        color inherit
+        margin-bottom .75em
+
+
+@keyframes pixIn
+    for i in 1..6
+        { 20% * (i - 1) }
+            background-image url( s('./images/Vladimir.Kalinichev.%s.png', i ) )
+
+@keyframes pixOut
+    for i in 1..6
+        { 20% * (6 - i) }
+            background-image url( s('./images/Vladimir.Kalinichev.%s.png', i ) )

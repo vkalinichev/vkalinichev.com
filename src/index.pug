@@ -1,0 +1,33 @@
+include ./templates/social-icon
+
+doctype
+
+html
+head
+  title Vladimir Kalinichev
+  link( rel='stylesheet' href='./index.css' )
+
+body
+  .wrapper
+    .section
+      .section__inner
+        .business-card
+          .business-card__photo
+            img( src='./Vladimir.Kalinichev.1.png' )
+          .business-card__info
+            .business-card__name
+              | Vladimir Kalinichev
+            .business-card__post
+              | JavaScript Developer
+
+            .social
+              a.social__icon.social__icon_github( href='https://github.com/vkalinichev' )
+                include ./icons/github.svg
+              a.social__icon.social__icon_linkedin( href='https://www.linkedin.com/in/vkalinichev' )
+                include ./icons/linkedin.svg
+              a.social__icon.social__icon_stackoverflow( href='http://stackoverflow.com/users/4974102' )
+                include ./icons/stackoverflow.svg
+              a.social__icon.social__icon_npm( href='https://npmjs.org/~vkalinichev' )
+                include ./icons/npm.svg
+
+  script( src='index.js' )

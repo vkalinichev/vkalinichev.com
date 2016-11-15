@@ -19,6 +19,11 @@ module.exports = {
                 loader: 'json'
             },
             {
+                test: /\.(jade|pug)$/,
+                exclude: /node_modules/,
+                loader: 'pug-html'
+            },
+            {
                 test: /\.eot$/,
                 exclude: /node_modules/,
                 loader: 'file'
@@ -42,17 +47,17 @@ module.exports = {
             {
                 test: /\.gif/,
                 exclude: /node_modules/,
-                loader: 'url-loader?limit=10000&mimetype=image/gif'
+                loader: 'file'
             },
             {
                 test: /\.jpg/,
                 exclude: /node_modules/,
-                loader: 'url-loader?limit=10000&mimetype=image/jpg'
+                loader: 'file'
             },
             {
                 test: /\.png/,
                 exclude: /node_modules/,
-                loader: 'url-loader?limit=10000&mimetype=image/png'
+                loader: 'file'
             }
         ]
     },
