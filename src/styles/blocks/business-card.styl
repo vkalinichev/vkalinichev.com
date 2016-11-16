@@ -6,20 +6,38 @@
     align-items center
     user-select none
 
+    @media $mobile
+        flex-direction column
+
+    &__photo-wrapper
+        flex 0 0 128px
+        height 128px
+        margin 0 40px 0 0
+
+        @media $mobile
+            margin 0 0 32px
+            width 128px
+
     &__photo
-        width 128px
+        width 100%
         height @width
         border-radius 50%
         overflow hidden
-        margin 0 40px 0 0
         background transparent center / cover
         animation pixIn .3s linear forwards
 
         &:hover
             animation pixOut .2s linear forwards
 
+        @media $mobile
+            &:active
+                animation pixOut .2s linear forwards
+
     &__photo-inner
+        width 30%
+        height 30%
         opacity .01
+        pointer-events none
 
     &__info
         padding-bottom 10px
@@ -28,12 +46,18 @@
         font-weight 300
         user-select initial
 
+        @media $mobile
+            text-align center
+
     &__name
-        margin-bottom .1em
+        margin 0 0 .1em
 
         font-size 2.2rem
         font-weight 400
         color #333
+
+        @media $mobile
+            margin-bottom .3em
 
     &__post
         color inherit

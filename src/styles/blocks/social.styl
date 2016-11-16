@@ -1,13 +1,23 @@
 .social
 
+    @media $mobile
+        margin-top 2.5rem
+
     &__icon
         display inline-block
         width 24px
         height @width
         margin-right 12px
 
+        @media $mobile
+            width 32px
+            height @width
+
         &_npm
             width 48px
+
+            @media $mobile
+               width 64px
 
         &:hover
             opacity .75
