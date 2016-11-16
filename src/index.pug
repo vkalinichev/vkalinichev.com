@@ -5,21 +5,20 @@ doctype
 html( lang='en-US' )
   head
 
-    title Vladimir Kalinichev
+    title Vladimir Kalinichev - JavaScript Developer
     link( rel='stylesheet' href='./index.css' )
     script( type='text/javascript' )
       include ./scripts/ym.js
 
   body
     .wrapper
-      .wrapper__space.wrapper__space_top
       .section
         .section__inner
           .business-card
             .business-card__photo
               img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.1.png' )
             .business-card__info
-              .business-card__name
+              h1.business-card__name
                 | Vladimir Kalinichev
               .business-card__post
                 | JavaScript Developer
@@ -33,7 +32,5 @@ html( lang='en-US' )
                   include ./icons/stackoverflow.svg
                 a.social__icon.social__icon_npm( href='https://npmjs.org/~vkalinichev' target='_blank' )
                   include ./icons/npm.svg
-
-      .wrapper__space.wrapper__space_bottom
 
     script( src='index.js' )
