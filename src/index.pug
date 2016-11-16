@@ -3,10 +3,18 @@ include ./templates/social-icon
 doctype
 
 html( lang='en-US' )
+
   head
 
+    meta( charset='utf-8' )
+    meta( http-equiv='x-ua-compatible' content='ie=edge' )
+    meta( name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' )
+
     title Vladimir Kalinichev - JavaScript Developer
+    meta( name='description' content="Vladimir Kalinichev's personal website" )
+
     link( rel='stylesheet' href='./index.css' )
+
     script( type='text/javascript' )
       include ./scripts/ym.js
     script( type='text/javascript' )
@@ -17,8 +25,14 @@ html( lang='en-US' )
       .section
         .section__inner
           .business-card
-            .business-card__photo
-              img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.1.png' )
+            .business-card__photo-wrapper
+              .business-card__photo
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.1.png' )
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.2.png' )
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.3.png' )
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.4.png' )
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.5.png' )
+                img.business-card__photo-inner( src='./images/Vladimir.Kalinichev.6.png' )
             .business-card__info
               h1.business-card__name
                 | Vladimir Kalinichev
