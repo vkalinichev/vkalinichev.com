@@ -24,10 +24,11 @@
         border-radius 50%
         overflow hidden
         background transparent center / cover
-        animation pixIn .3s linear forwards
+        spriteImage( $vladimir_kalinichev_1 )
+        spritePosition( $vladimir_kalinichev_1 )
 
         &:hover
-            animation pixOut .2s linear forwards
+            animation pixOut 1.2s linear forwards
 
         @media $mobile
             &:active
@@ -65,11 +66,9 @@
 
 
 @keyframes pixIn
-    for i in 1..6
-        { 20% * (i - 1) }
-            background-image url( s('./images/Vladimir.Kalinichev.%s.png', i ) )
+    to
+        spriteImage( $vladimir_kalinichev_6 )
 
 @keyframes pixOut
-    for i in 1..6
-        { 20% * (6 - i) }
-            background-image url( s('./images/Vladimir.Kalinichev.%s.png', i ) )
+    to
+        spriteImage( $vladimir_kalinichev_1 )

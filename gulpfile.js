@@ -1,6 +1,8 @@
+const del = require( 'del' )
 const gulp = require( 'gulp' )
 const pug = require( 'gulp-pug' )
 const cssnano = require( 'cssnano' )
+const merge = require( 'merge-stream' )
 const stylus = require( 'gulp-stylus' )
 const connect = require( 'gulp-connect' )
 const plumber = require( 'gulp-plumber' )
@@ -9,10 +11,16 @@ const imagemin = require( 'gulp-imagemin' )
 const autoprefixer = require( 'autoprefixer' )
 const sourcemaps = require( 'gulp-sourcemaps' )
 const livereload = require( 'gulp-livereload' )
+const spritesmith = require( 'gulp.spritesmith' )
+const sequence = require( 'gulp-sequence' )
 
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
 
-gulp.task( 'build', [ 'templates', 'styles', 'scripts', 'images' ] )
+gulp.task( 'build', sequence( 'clean', [ 'templates', 'styles', 'scripts' ] ) )
+
+gulp.task( 'clean', function () {
+    del( './build/**/*' )
+} )
 
 gulp.task( 'templates', function () {
     gulp.src( './src/index.pug' )
@@ -22,7 +30,7 @@ gulp.task( 'templates', function () {
         .pipe( livereload() )
 } )
 
-gulp.task( 'styles', function () {
+gulp.task( 'styles', [ 'sprite' ], function () {
     gulp.src( './src/index.styl' )
         .pipe( plumber( console.error ) )
         .pipe( sourcemaps.init() )
@@ -43,6 +51,24 @@ gulp.task( 'images', function () {
         .pipe( plumber( console.error ) )
         .pipe( imagemin() )
         .pipe( gulp.dest( './build/' ) )
+} )
+
+gulp.task( 'sprite', function () {
+    const spriteData = gulp.src( './src/images/*.png' )
+        .pipe( spritesmith( {
+            imgName: 'sprite.jpg',
+            cssName: '.sprite.styl',
+            imgOpts: { quality: 85 },
+            algorithm: 'left-right'
+        } ) )
+
+    const imgStream = spriteData.img
+        .pipe( gulp.dest( './build' ) )
+
+    const stylStream = spriteData.css
+        .pipe( gulp.dest( './src/styles' ) )
+
+    return merge( imgStream, stylStream )
 } )
 
 gulp.task( 'connect', function () {
