@@ -6,6 +6,8 @@
     align-items center
     user-select none
 
+    a $vladimir_kalinichev_1_total_width
+
     @media $mobile
         flex-direction column
 
@@ -25,14 +27,15 @@
         overflow hidden
         background transparent center / cover
         spriteImage( $vladimir_kalinichev_1 )
-        spritePosition( $vladimir_kalinichev_1 )
+        spritePositionX( $vladimir_kalinichev_1 )
+        animation pixelize .2s steps( 4 ) forwards
 
         &:hover
-            animation pixOut 1.2s linear forwards
+            animation-name unpixelize
 
         @media $mobile
             &:active
-                animation pixOut .2s linear forwards
+                animation-name unpixelize
 
     &__photo-inner
         width 30%
@@ -65,10 +68,14 @@
         margin-bottom .75em
 
 
-@keyframes pixIn
+@keyframes pixelize
+    from
+        spritePositionX( $vladimir_kalinichev_1 )
     to
-        spriteImage( $vladimir_kalinichev_6 )
+        spritePositionX( $vladimir_kalinichev_5 )
 
-@keyframes pixOut
+@keyframes unpixelize
+    from
+        spritePositionX( $vladimir_kalinichev_5 )
     to
-        spriteImage( $vladimir_kalinichev_1 )
+        spritePositionX( $vladimir_kalinichev_1 )
