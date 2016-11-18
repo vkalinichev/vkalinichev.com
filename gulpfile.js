@@ -1,19 +1,23 @@
 const del = require( 'del' )
 const gulp = require( 'gulp' )
+const path = require( 'path' )
 const $if = require( 'gulp-if' )
 const pug = require( 'gulp-pug' )
 const cssnano = require( 'cssnano' )
 const merge = require( 'merge-stream' )
 const stylus = require( 'gulp-stylus' )
+const svgmin = require( 'gulp-svgmin' )
+const rename = require( 'gulp-rename' )
 const connect = require( 'gulp-connect' )
 const plumber = require( 'gulp-plumber' )
 const postcss = require( 'gulp-postcss' )
 const imagemin = require( 'gulp-imagemin' )
+const sequence = require( 'gulp-sequence' )
+const svgstore = require( 'gulp-svgstore' )
 const autoprefixer = require( 'autoprefixer' )
 const sourcemaps = require( 'gulp-sourcemaps' )
 const livereload = require( 'gulp-livereload' )
 const spritesmith = require( 'gulp.spritesmith' )
-const sequence = require( 'gulp-sequence' )
 
 let __prod__ = false
 
@@ -21,7 +25,7 @@ gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
 
 gulp.task( 'prod', sequence( 'set-production-environment', 'build' ) )
 
-gulp.task( 'build', sequence( 'clean', [ 'templates', 'styles', 'scripts' ] ) )
+gulp.task( 'build', sequence( 'clean', [ 'templates', 'styles' ] ) )
 
 gulp.task( 'clean', function () {
     del( './build/**/*' )
@@ -32,7 +36,7 @@ gulp.task( 'set-production-environment', function ( callback ) {
     callback()
 } )
 
-gulp.task( 'templates', function () {
+gulp.task( 'templates', [ 'icons' ], function () {
     gulp.src( './src/index.pug' )
         .pipe( plumber( console.error ) )
         .pipe( pug( { pretty: !__prod__ } ) )
@@ -56,6 +60,29 @@ gulp.task( 'scripts', function () {
         .pipe( gulp.dest( './build/' ) )
 } )
 
+gulp.task( 'icons', function () {
+    gulp.src( './src/icons/**/*.svg' )
+        .pipe( plumber( console.error ) )
+        .pipe( svgmin( function ( file ) {
+            const prefix = path.basename( file.relative, path.extname( file.relative ))
+            return {
+                plugins: [
+                    {
+                        cleanupIDs: {
+                            prefix: prefix + '-',
+                            minify: true
+                        }
+                    },
+                    { removeDoctype: true },
+                    { removeComments: true }
+                ]
+            }
+        }))
+        .pipe( svgstore() )
+        .pipe( rename( '.icons.svg' ) )
+        .pipe( gulp.dest( './src/icons' ) )
+} )
+
 gulp.task( 'images', function () {
     gulp.src( './src/**/*.{gif,png,jpg}' )
         .pipe( plumber( console.error ) )
@@ -64,21 +91,20 @@ gulp.task( 'images', function () {
 } )
 
 gulp.task( 'sprite', function () {
-    const spriteData = gulp.src( './src/images/*.png' )
-        .pipe( spritesmith( {
-            imgName: 'sprite.jpg',
-            cssName: '.sprite.styl',
-            imgOpts: { quality: 85 },
-            algorithm: 'left-right'
-        } ) )
+    const spriteConfig = {
+        imgName: 'sprite.jpg',
+        cssName: '.sprite.styl',
+        imgOpts: { quality: 85 },
+        algorithm: 'left-right'
+    }
 
-    const imgStream = spriteData.img
-        .pipe( gulp.dest( './build' ) )
+    const { img, css } = gulp.src( './src/images/*.png' )
+        .pipe( spritesmith( spriteConfig ) )
 
-    const stylStream = spriteData.css
-        .pipe( gulp.dest( './src/styles' ) )
-
-    return merge( imgStream, stylStream )
+    return merge(
+        img.pipe( gulp.dest( './build' ) ),
+        css.pipe( gulp.dest( './src/styles' ) )
+    )
 } )
 
 gulp.task( 'connect', function () {

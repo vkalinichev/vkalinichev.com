@@ -3,7 +3,7 @@
     @media $mobile
         margin-top 2.5rem
 
-    &__icon
+    &__icon-link
         display inline-block
         width 24px
         height @width
@@ -17,10 +17,14 @@
             margin-right 8px
 
         &_npm
-            width 48px
+            width @width * 2
 
             @media $mobile
-               width 64px
+                width round( @width * 1.33 )
 
         &:hover
             opacity .75
+
+    &__icon
+        width inherit
+        height inherit

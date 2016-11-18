@@ -34,13 +34,20 @@ html( lang='en-US' )
                 | JavaScript Developer
 
               .social
-                a.social__icon.social__icon_github( href='https://github.com/vkalinichev' target='_blank' )
-                  include ./icons/github.svg
-                a.social__icon.social__icon_linkedin( href='https://www.linkedin.com/in/vkalinichev' target='_blank' )
-                  include ./icons/linkedin.svg
-                a.social__icon.social__icon_stackoverflow( href='https://stackoverflow.com/users/4974102' target='_blank' )
-                  include ./icons/stackoverflow.svg
-                a.social__icon.social__icon_npm( href='https://npmjs.org/~vkalinichev' target='_blank' )
-                  include ./icons/npm.svg
+                a.social__icon-link.social__icon-link_github( href='https://github.com/vkalinichev' target='_blank' )
+                  svg.social__icon
+                    use( xlink:href='#github' )
+                a.social__icon-link.social__icon-link_linkedin( href='https://www.linkedin.com/in/vkalinichev' target='_blank' )
+                  svg.social__icon
+                    use( xlink:href='#linkedin' )
+                a.social__icon-link.social__icon-link_stackoverflow( href='https://stackoverflow.com/users/4974102' target='_blank' )
+                  svg.social__icon
+                    use( xlink:href='#stackoverflow' )
+                a.social__icon-link.social__icon-link_npm( href='https://npmjs.org/~vkalinichev' target='_blank' )
+                  svg.social__icon
+                    use( xlink:href='#npm' )
 
-    script( src='index.js' )
+    include ./icons/.icons.svg
+
+    script( type='text/javascript' )
+      include ./index.js
