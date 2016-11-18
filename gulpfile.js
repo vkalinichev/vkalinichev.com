@@ -1,5 +1,6 @@
 const del = require( 'del' )
 const gulp = require( 'gulp' )
+const $if = require( 'gulp-if' )
 const pug = require( 'gulp-pug' )
 const cssnano = require( 'cssnano' )
 const merge = require( 'merge-stream' )
@@ -14,7 +15,11 @@ const livereload = require( 'gulp-livereload' )
 const spritesmith = require( 'gulp.spritesmith' )
 const sequence = require( 'gulp-sequence' )
 
+let __prod__ = false
+
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
+
+gulp.task( 'prod', sequence( 'set-production-environment', 'build' ) )
 
 gulp.task( 'build', sequence( 'clean', [ 'templates', 'styles', 'scripts' ] ) )
 
@@ -22,10 +27,15 @@ gulp.task( 'clean', function () {
     del( './build/**/*' )
 } )
 
+gulp.task( 'set-production-environment', function ( callback ) {
+    __prod__ = true
+    callback()
+} )
+
 gulp.task( 'templates', function () {
     gulp.src( './src/index.pug' )
         .pipe( plumber( console.error ) )
-        .pipe( pug( { pretty: false } ) )
+        .pipe( pug( { pretty: !__prod__ } ) )
         .pipe( gulp.dest( './build/' ) )
         .pipe( livereload() )
 } )
@@ -33,10 +43,10 @@ gulp.task( 'templates', function () {
 gulp.task( 'styles', [ 'sprite' ], function () {
     gulp.src( './src/index.styl' )
         .pipe( plumber( console.error ) )
-        .pipe( sourcemaps.init() )
+        .pipe( $if( !__prod__, sourcemaps.init() ) )
         .pipe( stylus() )
-        .pipe( postcss( [ autoprefixer, cssnano ] ) )
-        .pipe( sourcemaps.write() )
+        .pipe( $if( __prod__, postcss( [ autoprefixer, cssnano ] ) ) )
+        .pipe( $if( !__prod__, sourcemaps.write() ) )
         .pipe( gulp.dest( './build/' ) )
 } )
 
