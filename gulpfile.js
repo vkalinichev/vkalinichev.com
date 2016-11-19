@@ -37,7 +37,7 @@ gulp.task( 'set-production-environment', function ( callback ) {
 } )
 
 gulp.task( 'templates', [ 'icons' ], function () {
-    gulp.src( './src/index.pug' )
+    return gulp.src( './src/index.pug' )
         .pipe( plumber( console.error ) )
         .pipe( pug( { pretty: !__prod__ } ) )
         .pipe( gulp.dest( './build/' ) )
@@ -45,7 +45,7 @@ gulp.task( 'templates', [ 'icons' ], function () {
 } )
 
 gulp.task( 'styles', [ 'sprite' ], function () {
-    gulp.src( './src/index.styl' )
+    return gulp.src( './src/index.styl' )
         .pipe( plumber( console.error ) )
         .pipe( $if( !__prod__, sourcemaps.init() ) )
         .pipe( stylus() )
@@ -55,13 +55,13 @@ gulp.task( 'styles', [ 'sprite' ], function () {
 } )
 
 gulp.task( 'scripts', function () {
-    gulp.src( './src/index.js' )
+    return gulp.src( './src/index.js' )
         .pipe( plumber( console.error ) )
         .pipe( gulp.dest( './build/' ) )
 } )
 
 gulp.task( 'icons', function () {
-    gulp.src( './src/icons/**/*.svg' )
+    return gulp.src( './src/icons/**/*.svg' )
         .pipe( plumber( console.error ) )
         .pipe( svgmin( function ( file ) {
             const prefix = path.basename( file.relative, path.extname( file.relative ))
@@ -84,7 +84,7 @@ gulp.task( 'icons', function () {
 } )
 
 gulp.task( 'images', function () {
-    gulp.src( './src/**/*.{gif,png,jpg}' )
+    return gulp.src( './src/**/*.{gif,png,jpg}' )
         .pipe( plumber( console.error ) )
         .pipe( imagemin() )
         .pipe( gulp.dest( './build/' ) )
