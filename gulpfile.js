@@ -19,7 +19,7 @@ const sourcemaps = require( 'gulp-sourcemaps' )
 const livereload = require( 'gulp-livereload' )
 const spritesmith = require( 'gulp.spritesmith' )
 
-let __prod__ = false
+let __prod__ = process.env.NODE_ENV === 'production'
 
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
 
