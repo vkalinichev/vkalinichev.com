@@ -11,7 +11,11 @@ html( lang='en-US' )
     title Vladimir Kalinichev - JavaScript Developer
     meta( name='description' content="Vladimir Kalinichev's personal website" )
 
-    link( rel='stylesheet' href='./index.css' )
+    if production
+      style
+        include ./styles/.index.css
+    else
+      link( rel='stylesheet' href='./index.css' )
 
     script( type='text/javascript' )
       include ./scripts/ym.js

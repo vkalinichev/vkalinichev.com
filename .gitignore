@@ -5,3 +5,4 @@ build
 *.log
 .icons.svg
 .sprite.styl
+.index.css

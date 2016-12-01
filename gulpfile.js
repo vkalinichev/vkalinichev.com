@@ -36,10 +36,15 @@ gulp.task( 'set-production-environment', function ( callback ) {
     callback()
 } )
 
-gulp.task( 'templates', [ 'icons' ], function () {
+gulp.task( 'templates', [ 'icons', 'styles' ], function () {
     return gulp.src( './src/index.pug' )
         .pipe( plumber( console.error ) )
-        .pipe( pug( { pretty: !__prod__ } ) )
+        .pipe( pug( {
+            pretty: !__prod__,
+            locals: {
+                production: __prod__
+            }
+        } ) )
         .pipe( gulp.dest( './build/' ) )
         .pipe( livereload() )
 } )
@@ -51,7 +56,9 @@ gulp.task( 'styles', [ 'sprite' ], function () {
         .pipe( stylus() )
         .pipe( $if( __prod__, postcss( [ autoprefixer, cssnano ] ) ) )
         .pipe( $if( !__prod__, sourcemaps.write() ) )
-        .pipe( gulp.dest( './build/' ) )
+        .pipe( $if( !__prod__, gulp.dest( './build/' ) ) )
+        .pipe( $if( __prod__, rename( '.index.css' ) ) )
+        .pipe( $if( __prod__, gulp.dest( './src/styles/' ) ) )
 } )
 
 gulp.task( 'scripts', function () {
