@@ -63,22 +63,9 @@ gulp.task( 'scripts', function () {
 gulp.task( 'icons', function () {
     return gulp.src( './src/icons/**/*.svg' )
         .pipe( plumber( console.error ) )
-        .pipe( svgmin( function ( file ) {
-            const prefix = path.basename( file.relative, path.extname( file.relative ))
-            return {
-                plugins: [
-                    {
-                        cleanupIDs: {
-                            prefix: prefix + '-',
-                            minify: true
-                        }
-                    },
-                    { removeDoctype: true },
-                    { removeComments: true }
-                ]
-            }
-        }))
-        .pipe( svgstore() )
+        .pipe( rename( { prefix: 'i-' } ) )
+        .pipe( svgmin() )
+        .pipe( svgstore( { inlineSvg: true } ) )
         .pipe( rename( '.icons.svg' ) )
         .pipe( gulp.dest( './src/icons' ) )
 } )
