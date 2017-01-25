@@ -1,0 +1,7 @@
+mixin social-icon( link )
+
+  - var network = attributes[ 'class' ]
+
+  a.s0cial__icon-link( class=`s0cial__icon-link${ network }` href=`${ link }` target='_blank' rel='noopener noreferrer' )
+    svg.s0cial__icon
+      use( xlink:href=`#i-${ network.slice(1) }` )

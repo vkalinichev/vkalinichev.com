@@ -1,5 +1,7 @@
 doctype
 
+include ./templates/social-icon
+
 html( lang='en-US' )
 
   head
@@ -36,18 +38,10 @@ html( lang='en-US' )
                 | JavaScript Developer
 
               .s0cial
-                a.s0cial__icon-link.s0cial__icon-link_github( href='https://github.com/vkalinichev' target='_blank' rel='noopener noreferrer' )
-                  svg.s0cial__icon
-                    use( xlink:href='#i-github' )
-                a.s0cial__icon-link.s0cial__icon-link_linkedin( href='https://www.linkedin.com/in/vkalinichev' target='_blank' rel='noopener noreferrer' )
-                  svg.s0cial__icon
-                    use( xlink:href='#i-linkedin' )
-                a.s0cial__icon-link.s0cial__icon-link_stackoverflow( href='https://stackoverflow.com/users/4974102' target='_blank' rel='noopener noreferrer' )
-                  svg.s0cial__icon
-                    use( xlink:href='#i-stackoverflow' )
-                a.s0cial__icon-link.s0cial__icon-link_npm( href='https://npmjs.org/~vkalinichev' target='_blank' rel='noopener noreferrer' )
-                  svg.s0cial__icon
-                    use( xlink:href='#i-npm' )
+                +social-icon( 'https://github.com/vkalinichev' )._github
+                +social-icon( 'https://www.linkedin.com/in/vkalinichev' )._linkedin
+                +social-icon( 'https://stackoverflow.com/users/4974102' )._stackoverflow
+                +social-icon( 'https://npmjs.org/~vkalinichev' )._npm
 
     include ./icons/.icons.svg
 
