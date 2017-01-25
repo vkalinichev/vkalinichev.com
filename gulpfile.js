@@ -23,17 +23,26 @@ let __prod__ = process.env.NODE_ENV === 'production'
 
 gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
 
-gulp.task( 'prod', sequence( 'set-production-environment', 'build' ) )
+gulp.task( 'prod', sequence( 'set-production-environment', 'build', 'cleanup' ) )
 
-gulp.task( 'build', sequence( 'clean', [ 'templates', 'styles' ] ) )
+gulp.task( 'build', sequence( 'clean', [ 'resources', 'templates', 'styles' ] ) )
 
 gulp.task( 'clean', function () {
     del( './build/**/*' )
 } )
 
+gulp.task( 'cleanup', function () {
+    del( './build/.icons.svg' )
+} )
+
 gulp.task( 'set-production-environment', function ( callback ) {
     __prod__ = true
     callback()
+} )
+
+gulp.task( 'resources', function () {
+    return gulp.src( './src/resources/**/*' )
+        .pipe( gulp.dest( './build' ) )
 } )
 
 gulp.task( 'templates', [ 'icons', 'styles' ], function () {
@@ -109,6 +118,7 @@ gulp.task( 'connect', function () {
 } )
 
 gulp.task( 'watch', function () {
+    gulp.watch( './src/resources/**/*', [ 'resources' ] )
     gulp.watch( './src/**/*.styl', [ 'styles' ] )
     gulp.watch( './src/**/*.{jade,pug}', [ 'templates' ] )
     gulp.watch( './build/**/*.css', function ( filepath ) {
