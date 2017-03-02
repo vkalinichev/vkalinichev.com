@@ -21,7 +21,7 @@ const spritesmith = require( 'gulp.spritesmith' )
 
 let __prod__ = process.env.NODE_ENV === 'production'
 
-gulp.task( 'default', [ 'build', 'connect', 'watch' ] )
+gulp.task( 'default', sequence( [ 'build' ], 'watch', 'connect' ) )
 
 gulp.task( 'prod', sequence( 'set-production-environment', 'build', 'cleanup' ) )
 
@@ -121,9 +121,8 @@ gulp.task( 'watch', function () {
     gulp.watch( './src/resources/**/*', [ 'resources' ] )
     gulp.watch( './src/**/*.styl', [ 'styles' ] )
     gulp.watch( './src/**/*.{jade,pug}', [ 'templates' ] )
-    gulp.watch( './build/**/*.css', function ( filepath ) {
-        livereload.changed( filepath )
-    } )
+    gulp.watch( './build/*.css', livereload.changed )
+
     livereload.listen()
 } )
 
