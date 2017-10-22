@@ -1,7 +1,7 @@
 .s0cial
 
-    @media $mobile
-        margin-top 2.5rem
+    @media $portrait
+        margin-top 1rem
 
     &__icon-link
         display inline-block
@@ -9,8 +9,8 @@
         height @width
         margin-right 12px
 
-        @media $mobile
-            width 32px
+        @media $portrait
+            width 28px
             height @width
 
         &_stackoverflow
@@ -19,7 +19,7 @@
         &_npm
             width @width * 2
 
-            @media $mobile
+            @media $portrait
                 width round( @width * 1.33 )
 
         &:hover

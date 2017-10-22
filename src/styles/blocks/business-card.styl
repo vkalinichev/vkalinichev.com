@@ -8,7 +8,7 @@
 
     a $vladimir_kalinichev_1_total_width
 
-    @media $mobile
+    @media $portrait
         flex-direction column
 
     &__photo-wrapper
@@ -16,7 +16,7 @@
         height 128px
         margin 0 40px 0 0
 
-        @media $mobile
+        @media $portrait
             margin 0 0 32px
             width 128px
 
@@ -33,15 +33,9 @@
         &:hover
             animation-name unpixelize
 
-        @media $mobile
+        @media $portrait
             &:active
                 animation-name unpixelize
-
-    &__photo-inner
-        width 30%
-        height 30%
-        opacity .01
-        pointer-events none
 
     &__info
         padding-bottom 10px
@@ -49,8 +43,9 @@
         font-size 1.6em
         font-weight 300
         user-select auto
+        text-align center
 
-        @media $mobile
+        @media $portrait
             text-align center
 
     &__name
@@ -60,12 +55,36 @@
         font-weight 400
         color #333
 
-        @media $mobile
+        @media $portrait
+            font-size @font-size * 1.09
             margin-bottom .3em
 
     &__post
-        color inherit
-        margin-bottom .75em
+        position relative
+        //display inline-block
+
+        margin 0 .65em .7em
+        padding .1em .4em .2em
+
+        color black
+
+        font-weight normal
+
+        &:before
+            content ''
+            position: absolute
+            top 0
+            left 0
+            right 0
+            bottom 0
+            margin 0 auto
+            background $jsYellow
+            z-index -1
+            transform perspective(100px) rotateX(-16deg)
+
+            @media $portrait
+                transform perspective(100px) rotateX(-14deg)
+                width 99%
 
 
 @keyframes pixelize
