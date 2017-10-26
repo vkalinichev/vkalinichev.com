@@ -61,7 +61,6 @@
 
     &__post
         position relative
-        //display inline-block
 
         margin 0 .65em .7em
         padding .1em .4em .2em
@@ -69,10 +68,12 @@
         color black
 
         font-weight normal
+        will-change transform
 
         &:before
+            will-change transform
             content ''
-            position: absolute
+            position absolute
             top 0
             left 0
             right 0
@@ -80,12 +81,11 @@
             margin 0 auto
             background $jsYellow
             z-index -1
-            transform perspective(100px) rotateX(-16deg)
+            //transform perspective(100px) rotateX(-16deg)
 
             @media $portrait
-                transform perspective(100px) rotateX(-14deg)
-                width 99%
-
+                transform perspective(100px) rotateX(-15deg) scale(1.02, 1.15)
+                transform-origin center top
 
 @keyframes pixelize
     from
